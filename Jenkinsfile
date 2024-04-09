@@ -24,8 +24,7 @@ agent any
   		stage('Validate the installation') {
     		steps {
       			sh '''
-               sudo chmod +x auto.sh
-	       sudo bash auto.sh
+               bash auto.sh
             '''
     		}
   		}
