@@ -1,4 +1,4 @@
-cd /var/lib/jenkins/workspace/project1_testing
+cd /var/lib/jenkins/workspace/newtest/
 npm install next
 npm run build 
 npm run start
