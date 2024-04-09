@@ -46,7 +46,7 @@ agent any
 
 def notify(status){
 	emailext (
-		to: 'avsvishal94@gmail.com'
+		to: 'avsvishal94@gmail.com',
 		subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
 		body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'</p>
 		<p>Check the console output	<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>"""
