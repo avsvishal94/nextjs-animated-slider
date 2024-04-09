@@ -18,7 +18,7 @@ agent any
         }
   		 stage('Checkout') {
     		 steps {
-      			 git branch: 'main', url: 'https://github.com/avsvishal94/nextjs-animated-slide.git'
+      			 git branch: 'main', url: 'https://github.com/avsvishal94/nextjs-animated-slider.git'
     		 }
   		 }
   		stage('Validate the installation') {
