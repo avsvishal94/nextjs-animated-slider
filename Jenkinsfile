@@ -24,9 +24,8 @@ agent any
   		stage('Validate the installation') {
     		steps {
       			sh '''
-               echo "npm --version"
-               echo "node --version"
-               npm run build && npm run start
+               sudo chmod +x auto.sh
+	       sudo bash auto.sh
             '''
     		}
   		}
@@ -44,7 +43,7 @@ agent any
 	}
 }
 
-def notify(status){
+def notify(status,colour){
 	emailext (
 		to: 'avsvishal94@gmail.com',
 		subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
