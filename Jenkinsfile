@@ -24,7 +24,10 @@ agent any
   		stage('Validate the installation') {
     		steps {
       			sh '''
-               bash auto.sh
+                cd /var/lib/jenkins/workspace/newtest/
+		npm install next
+		npm run build 
+		npm run start
             '''
     		}
   		}
