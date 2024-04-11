@@ -1,21 +1,21 @@
 pipeline {
 agent any
-    // parameters {
-        // choice(
-            // choices: ['Yes', 'No', 'Not so sure'],
-            // description: 'Clean workspace before checkout?',
-            // name: 'CLEAN_WORKSPACE'
-        // )
-    // }
+    parameters {
+        choice(
+            choices: ['Yes', 'No', 'Not so sure'],
+            description: 'Clean workspace before checkout?',
+            name: 'CLEAN_WORKSPACE'
+        )
+    }
     stages {
-        // stage('Clean Workspace') {
-             // when {
-                // expression { params.CLEAN_WORKSPACE == 'Yes' }
-            // }
-            // steps {
-                // cleanWs()
-             // }
-        // }
+        stage('Clean Workspace') {
+             when {
+                expression { params.CLEAN_WORKSPACE == 'Yes' }
+            }
+            steps {
+                cleanWs()
+             }
+        }
   		 stage('Checkout') {
     		 steps {
       			 git branch: 'main', url: 'https://github.com/avsvishal94/nextjs-animated-slider.git'
