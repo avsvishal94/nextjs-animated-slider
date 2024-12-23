@@ -15,43 +15,53 @@ jobs:
         with:
           ref: main
 
-  npm-install:
+  validate-installation:
     needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install Dependencies
-        run: npm install next
-
-  npm-build:
-    needs: npm-install
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build Application
-        run: npm run build
-
-  npm-start:
-    needs: npm-build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Start Application
-        run: npm run start
+      - name: Run auto.sh
+        run: bash auto.sh
 
   notify-success:
     if: ${{ success() }}
-    needs: [checkout, npm-install, npm-build, npm-start]
+    needs: validate-installation
     runs-on: ubuntu-latest
     steps:
       - name: Notify Success
-        run: echo "Job Success! Check the workflow logs."
+        run: |
+          echo "SUCCESS: Job '${{ github.job }} [${{ github.run_id }}]'"
+          echo "Check the console output: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      - name: Send Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "SUCCESS: Job '${{ github.job }} [${{ github.run_id }}]'"
+          body: |
+            <p>SUCCESS: Job '${{ github.job }} [${{ github.run_id }}]'</p>
+            <p>Check the console output: <a href='${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'>${{ github.job }} [${{ github.run_id }}]</a></p>
+          to: avsvishal94@gmail.com
 
   notify-failure:
     if: ${{ failure() }}
-    needs: [checkout, npm-install, npm-build, npm-start]
+    needs: validate-installation
     runs-on: ubuntu-latest
     steps:
       - name: Notify Failure
-        run: echo "Job Failed! Check the workflow logs."
+        run: |
+          echo "FAIL: Job '${{ github.job }} [${{ github.run_id }}]'"
+          echo "Check the console output: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      - name: Send Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "FAIL: Job '${{ github.job }} [${{ github.run_id }}]'"
+          body: |
+            <p>FAIL: Job '${{ github.job }} [${{ github.run_id }}]'</p>
+            <p>Check the console output: <a href='${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'>${{ github.job }} [${{ github.run_id }}]</a></p>
+          to: avsvishal94@gmail.com
