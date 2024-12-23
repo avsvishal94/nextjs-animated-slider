@@ -5,27 +5,9 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      CLEAN_WORKSPACE:
-        description: 'Clean workspace before checkout?'
-        required: true
-        default: 'Yes'
-        type: choice
-        options:
-          - Yes
-          - No
-          - Not so sure
 
 jobs:
-  clean-workspace:
-    if: ${{ github.event.inputs.CLEAN_WORKSPACE == 'Yes' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clean Workspace
-        run: rm -rf ${{ github.workspace }}/*
-
   checkout:
-    needs: clean-workspace
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -58,14 +40,18 @@ jobs:
       - name: Start Application
         run: npm run start
 
-  notify:
-    needs: [clean-workspace, checkout, npm-install, npm-build, npm-start]
+  notify-success:
+    if: ${{ success() }}
+    needs: [checkout, npm-install, npm-build, npm-start]
     runs-on: ubuntu-latest
     steps:
-      - name: Notify Status
-        if: ${{ success() }}
-        run: |
-          echo "Job Success! Check the workflow logs."
-          # Replace with your email-sending mechanism if needed
-        else:
-          echo "Job Failed! Check the workflow logs."
+      - name: Notify Success
+        run: echo "Job Success! Check the workflow logs."
+
+  notify-failure:
+    if: ${{ failure() }}
+    needs: [checkout, npm-install, npm-build, npm-start]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Failure
+        run: echo "Job Failed! Check the workflow logs."
