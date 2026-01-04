@@ -37,4 +37,4 @@ pnpm build && yarn start
 
 ## 🤝 Contributing
 
-Let’s create great products together! We encourage and welcome collaboration and any type of contribution.
+Great products are built together. We enthusiastically welcome your collaboration—whether through code, design, documentation, or ideas. Let's join forces to create something extraordinary.
