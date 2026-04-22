@@ -1,19 +1,52 @@
-# Nextjs Animated Slider 🚀
+# 🎞️ Next.js Animated Slider
 
-Stunning animated slider website built using Next.js, Framer Motion, and Tailwind CSS.
+A **production-ready animated slider component** built with **Next.js**, **Framer Motion**, and **Tailwind CSS**.  
+Designed to be reusable, customizable, and easy to integrate into modern React applications.
 
-<img alt="Nextjs Animated Slider"  src="https://github.com/K-H-Rayhan/nextjs-animated-slider/assets/83538046/676e87e0-0988-4431-9c3d-354635faca93" width="100%" />
+<p align="center">
+  <img
+    alt="Nextjs Animated Slider Preview"
+    src="https://github.com/K-H-Rayhan/nextjs-animated-slider/assets/83538046/676e87e0-0988-4431-9c3d-354635faca93"
+    width="100%"
+  />
+</p>
 
-## 🖥 Demo
+---
 
-Check out a [live demo](https://nextjs-animated-slider.vercel.app/).
+## ✨ Features
+
+- Smooth and performant animations powered by Framer Motion
+- Fully responsive and mobile-friendly
+- Tailwind CSS–based styling
+- Easily reusable slider component
+- Clean and modern UI design
+- Optimized for Next.js projects
+
+---
+
+## 🌐 Live Demo
+
+👉 https://nextjs-animated-slider.vercel.app/
+
+---
 
 ## 📦 Installation
 
-To go with the latest version please copy and past in your terminal the following steps: 
+Clone the repository:
 
 ```bash
 git clone https://github.com/K-H-Rayhan/nextjs-animated-slider.git
+cd nextjs-animated-slider
+```
+
+Package Installation:
+
+```bash
+npm install
+# or
+yarn
+# or
+pnpm install
 ```
 
 Run the development server:
@@ -37,4 +70,4 @@ pnpm build && yarn start
 
 ## 🤝 Contributing
 
-Let’s create great products together! We encourage and welcome collaboration and any type of contribution.
+Great products are built together. We enthusiastically welcome your collaboration—whether through code, design, documentation, or ideas. Let's join forces to create something extraordinary.
